@@ -1217,7 +1217,7 @@ let cancel_given_up t =
    end for nobody, so it is cancelled there as the connection closes,
    shielded, since a cancelled caller is one it is sent for. *)
 let stop t e =
-  (* Cancel before closing: a pooler (Neon's) drops a cancel request for a
+  (* Cancel before closing: a pooling proxy can drop a cancel request for a
      client session that has already disconnected. *)
   Fun.protect
     ~finally:(fun () -> break t e)
