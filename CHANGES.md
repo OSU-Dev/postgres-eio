@@ -1,5 +1,14 @@
 # Changes
 
+## Unreleased
+
+- A statement given up on, by a timeout, a cancellation or a raise from the
+  caller's callback, is cancelled at the server before the connection
+  closes, not after: a pooling proxy can drop a cancel that arrives after
+  the client has disconnected.
+- That cancel request is given 2 s, not 5 s, or the connection's timeout if
+  that is shorter, so a caller already given up on waits less.
+
 ## 0.5.2 (2026-11-10)
 
 - postgres-eio is published to open-opam, `opam repo add open-opam
