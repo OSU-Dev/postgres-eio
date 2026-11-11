@@ -1196,10 +1196,10 @@ let break t e =
       lose link.unsent Closed
 
 (* A cancel request is a connect, perhaps a TLS handshake, and one small
-   message on a server that answers within milliseconds; 5 s is far past
+   message on a server that answers within milliseconds; 2 s is far past
    that, and short enough that a caller already given up on waits little
    more. *)
-let cancel_request = Mtime.Span.(5 * s)
+let cancel_request = Mtime.Span.(2 * s)
 
 (* A cancel the driver sends for a caller already given up on, which may
    be shielded, has a bound of its own: the connection's timeout may be

@@ -13,7 +13,7 @@
     callback while it is read (a [row] or [chunk] function), closes the
     connection and propagates as it came, after the statement is cancelled at
     the server, as {!cancel} does; that request is shielded from the
-    cancellation and given 5 s, or the connection's timeout if that is shorter,
+    cancellation and given 2 s, or the connection's timeout if that is shorter,
     even when the timeout is lifted. *)
 
 type t
@@ -34,7 +34,7 @@ type error =
         the connection is closed. What the statement did is unknown: a write may
         have been applied, so it is not run again blindly. On a timeout or a
         cancellation the running statement is first cancelled at the server, as
-        {!cancel} does, the request given 5 s or the timeout, whichever is
+        {!cancel} does, the request given 2 s or the timeout, whichever is
         shorter. *)
   | `Unsent of string
     (** connecting failed -- no address answered, the socket or TLS failed, the
